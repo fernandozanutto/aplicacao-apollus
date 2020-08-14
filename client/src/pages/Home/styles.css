@@ -1,0 +1,24 @@
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    min-height: calc(100vh - 56px - 5rem);
+}
+
+.user-menu {
+    margin-right: 1rem;
+    color: #fff
+}
+
+.user-list {
+    width: 90%;
+    margin: 3.2rem auto;
+}
+
+@media(min-width: 700px){
+    .home-content {
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,41 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0fc;
+    border-radius: 4px;
+    padding: 2.4rem;
+    background-color: #fff;
+    margin-bottom: 2rem;
+    
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.user-header h1 {
+    font-size: 2.2rem;
+    display: block;
+}
+
+.user-header p {
+    display: block;
+}
+
+.user-header div {
+    margin-left: 2.4rem;
+}
+
+.user-bio {
+    margin-top: 2.4rem;
+    line-height: 2.8rem;
+}

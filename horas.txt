@@ -1,1 +1,4 @@
 15 min -> criação do app react e configuração inicial
+35 min -> instalação e configuração inicial para o back end (java jdk, maven, spring initialzr)
+60 min -> página de login + header + footer + rota de teste na api
+55 min -> estruturação página home (lista de usuarios)

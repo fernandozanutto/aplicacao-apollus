@@ -1,0 +1,64 @@
+.landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    min-height: calc(100vh - 56px - 5rem);
+}
+
+.landing-content > div {
+    margin: 4rem 0;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    height: 20rem;
+}
+
+.cadastrar {
+    text-decoration: none;
+    align-self: flex-end;
+    justify-self: flex-end;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    margin-bottom: 1.2rem;
+    text-align: right;
+}
+
+button {
+    width: 100%;
+    border: 1px solid #fcfcfc;
+    height: 4rem;
+    background-color: green;
+    color: #fff;
+    border-radius: 0.5rem;
+}
+
+
+.input-block input {
+    width: 100%;
+    font-size: 1.6rem;
+    height: 4rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b0aec7;
+}
+
+.input-block + .input-block {
+    margin-top: 1rem
+}
+
+.input-block label {
+    font-size: 1.4rem;
+}
+
+@media(min-width: 700px){
+    .landing-content {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+}
