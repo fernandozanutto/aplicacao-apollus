@@ -20,12 +20,43 @@ body {
     background: var(--color-background);
 }
 
-
 body,
 input,
 button,
 textarea {
     font: 400 1.6rem Roboto;
+}
+
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+header, footer {
+    flex-shrink: 0;
+}
+
+.content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (min-width: 700px){

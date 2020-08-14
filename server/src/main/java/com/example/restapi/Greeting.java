@@ -1,5 +1,6 @@
 package com.example.restapi;
 
+
 public class Greeting {
 
     private final int id;
@@ -16,6 +17,10 @@ public class Greeting {
 
     public String getContent(){
         return this.content;
+    }
+
+    public String getTest(){
+        return "aaaaaaaaaasdas";
     }
     
 }

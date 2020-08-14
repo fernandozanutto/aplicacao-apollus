@@ -2,3 +2,14 @@
 35 min -> instalação e configuração inicial para o back end (java jdk, maven, spring initialzr)
 60 min -> página de login + header + footer + rota de teste na api
 55 min -> estruturação página home (lista de usuarios)
+50 min -> criar rota no backend teste de listagem de usuarios
+40 min -> footer no componente de usuario, criaçao página de perfil do usuario
+50 min -> footer ta certinho agr (reorganização do css)
+60 min -> add dependencias no projeto spring + página de perfil do usuario + requisição de teste dentro do sistema
+30 min -> estruturação página editar usuario
+
+
+
+/users
+
+/users/:id

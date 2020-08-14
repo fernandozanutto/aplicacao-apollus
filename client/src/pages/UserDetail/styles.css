@@ -1,0 +1,66 @@
+#user-page {
+    height: 100vh;
+}
+#user-page .content {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#user-page .back-icon, #user-page .edit-icon {
+    width: 3rem;
+    height: auto;
+}
+
+#user-page .header-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#user-page .user-profile {
+    background-color: white;
+    margin-top: 2rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+#user-page .user-status {
+    font-size: 1.4rem;
+}
+
+#user-page .user-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2.4rem
+}
+
+#user-page .user-header div {
+    margin-top: 2rem;
+}
+
+#user-page .user-avatar {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#user-page .user-header h1 {
+    font-size: 2.2rem;
+}
+
+#user-page .user-header p, #user-page .user-header h1 {
+    display: block;
+    text-align: center;
+}
+
+#user-page .info-group {
+    line-height: 2.8rem;
+    padding: 0 2.4rem;
+    margin-bottom: 2.4rem;
+    background-color: gray
+}
+
+#user-page .info-group legend {
+    font-size: 1.4rem;
+}

@@ -10,3 +10,12 @@
     margin: 1rem;
     color: white;
 }
+
+.header-link {
+    text-decoration: none;
+}
+
+.header-menu {
+    margin-right: 1rem;
+    color: #fff
+}

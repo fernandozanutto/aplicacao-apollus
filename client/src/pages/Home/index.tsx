@@ -3,36 +3,35 @@ import React from 'react'
 import './styles.css'
 import PageHeader from '../../components/PageHeader'
 import Footer from '../../components/Footer'
-import User from '../../components/User'
+import UserItem from '../../components/UserItem'
 
 function Home() {
     
     return (
 
-        <div id="home-page">
+        <div id="home-page" className="container">
 
             <PageHeader>
-                <p className="user-menu">Olá, Usuário</p>
+                <p className="header-menu">Olá, Usuário</p>
             </PageHeader>
 
-            <main className="home-content">
+            <main className="content">
 
                 <h1> Lista de Usuários</h1>
 
                 <div className="user-list">
 
-                    
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
-                    <User />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
+                    <UserItem />
                 </div>
                 
             </main>

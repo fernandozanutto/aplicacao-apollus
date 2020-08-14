@@ -3,8 +3,8 @@ import './styles.css'
 function Footer(){
     return (
         <footer className="footer">
-            <p>Sistema desenvolvido para a Apollus</p>
-            <p>2020</p>
+            <p className="left">Sistema desenvolvido para a Apollus EHS</p>
+            <p className="right">Desenvolvido por Fernando Zanutto, 2020</p>
         </footer>
 
     )

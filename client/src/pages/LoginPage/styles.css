@@ -1,17 +1,8 @@
-.landing-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 1rem;
-    min-height: calc(100vh - 56px - 5rem);
-}
-
-.landing-content > div {
+#login-page .content > * {
     margin: 4rem 0;
 }
 
-fieldset {
+#login-page fieldset {
     display: flex;
     flex-direction: column;
     border: 0;
@@ -28,7 +19,7 @@ fieldset {
     text-align: right;
 }
 
-button {
+#login-page button {
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;
