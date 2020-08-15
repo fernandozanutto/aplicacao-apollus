@@ -7,9 +7,4 @@
 50 min -> footer ta certinho agr (reorganização do css)
 60 min -> add dependencias no projeto spring + página de perfil do usuario + requisição de teste dentro do sistema
 30 min -> estruturação página editar usuario
-
-
-
-/users
-
-/users/:id
+75 min -> conexao inicial com banco de dados
