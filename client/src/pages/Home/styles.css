@@ -1,17 +1,10 @@
-#home-page {
-    height: 100vh;
-}
-
-#home-page .content h1 {
+#home-page .home-page-title {
     margin: 2rem 0;
 }
-.user-list {
-    display: flex;
-    flex-direction: column;
-}
+
 
 @media(min-width: 700px){
-    .home-content {
+    .content {
         flex-direction: row;
     }
 }

@@ -6,6 +6,7 @@
     overflow: hidden;
     background-color: #fff;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .user-item-container .user-header {

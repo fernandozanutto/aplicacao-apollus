@@ -12,6 +12,31 @@
     cursor: pointer;
 }
 
+.input-block input, .input-block textarea {
+    width: 100%;
+    font-size: 1.6rem;
+    height: 4rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b0aec7;
+}
+
+.input-block textarea {
+    display: block;
+    min-height: 6rem;
+    resize: vertical;
+    
+}
+
+.input-block + .input-block {
+    margin-top: 1rem
+}
+
+.input-block label {
+    font-size: 1.4rem;
+}
+
 #user-edit .back-icon, #user-edit .edit-icon {
     width: 3rem;
     height: auto;

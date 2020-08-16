@@ -1,24 +1,26 @@
-#login-page .login-form {
+#signup-page .signup-form {
     margin-top: 2rem;
     justify-content: initial;
     padding: 2rem;
     background-color: white;
     border-radius: 0.5rem;
-    width: 100%;
 }
 
-#login-page .content > * {
-    margin: 2rem 0;
+#signup-page h3 {
+    font-size: 1.4rem;
 }
 
-#login-page fieldset {
+#signup-page form {
+    margin-top: 2rem;
+}
+
+#signup-page fieldset {
     display: flex;
     flex-direction: column;
     border: 0;
-    height: 20rem;
 }
 
-#login-page .cadastrar {
+#signup-page .cadastrar {
     text-decoration: none;
     align-self: flex-end;
     justify-self: flex-end;
@@ -28,7 +30,8 @@
     text-align: right;
 }
 
-#login-page button {
+#signup-page button {
+    margin-top: 2rem;
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;
@@ -58,7 +61,7 @@
 
 @media(min-width: 700px){
     .landing-content {
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-around;
     }
 }

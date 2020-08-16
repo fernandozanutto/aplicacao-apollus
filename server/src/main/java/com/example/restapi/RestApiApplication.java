@@ -1,7 +1,10 @@
 package com.example.restapi;
 
+import javax.servlet.annotation.WebServlet;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,6 +27,4 @@ public class RestApiApplication {
 			}
 		};
 	}
-
-
 }

@@ -8,3 +8,9 @@
 60 min -> add dependencias no projeto spring + página de perfil do usuario + requisição de teste dentro do sistema
 30 min -> estruturação página editar usuario
 75 min -> conexao inicial com banco de dados
+25 min -> vendo config inicial jwt
+80min -> estilização pagina usuario e editar usuario + menu dropdown no header
+90 min -> praticamente comecei o back end do zero de novo xD (mas JWT ta funcionando)
+110 min -> login ok, buscando usuarios na pagina principal ok, cadastro ok
+40 min -> crud usuarios back end
+190 min -> front end + back end praticamente pronto (ta tudo funcional, faltam os detalhes de interface etc)
