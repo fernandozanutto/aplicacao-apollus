@@ -1,9 +1,14 @@
 package com.example.restapi.controller;
 
+import com.example.restapi.config.JwtTokenUtil;
+import com.example.restapi.model.JwtRequest;
+import com.example.restapi.model.JwtResponse;
 import com.example.restapi.model.UserDAO;
 import com.example.restapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +23,12 @@ public class UserController {
 
     @Autowired
     private UserService userDetailsService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     @GetMapping("/users")
     public List<UserDAO> getUsersByName(@RequestParam(defaultValue="") String name){
@@ -45,7 +56,11 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok().body(record);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+
+        final String token = jwtTokenUtil.generateToken(userDetails);
+
+        return ResponseEntity.ok().body(token);
     }
 
     @PostMapping(value = "users")

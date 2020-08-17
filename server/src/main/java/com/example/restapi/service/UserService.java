@@ -70,6 +70,7 @@ public class UserService implements UserDetailsService {
 		}
 
 		record.setName(user.getName());
+		record.setUsername(user.getUsername());
 		record.setAddress(user.getAddress());
 		record.setStatus(user.getStatus());
 		record.setBirth(user.getBirth());

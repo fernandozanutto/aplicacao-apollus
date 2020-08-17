@@ -8,7 +8,7 @@ import Footer from '../../components/Footer'
 import backIcon from '../../assets/images/back-icon.svg'
 import saveIcon from '../../assets/images/save-icon.svg'
 import api from '../../services/api'
-import { isAuthenticated, logout } from '../../services/auth'
+import { isAuthenticated, logout, login } from '../../services/auth'
 import { toast } from 'react-toastify'
 
 interface MatchParams {
@@ -31,6 +31,7 @@ const UserEdit: React.FC<Props> = (props) => {
     const [password, setPassword] = useState("")
     const [type, setType] = useState("2")
     const [isAdmin, setIsAdmin] = useState(false)
+    const [isMe, setIsMe] = useState(false)
 
 
     const { push, goBack } = useHistory()
@@ -49,6 +50,10 @@ const UserEdit: React.FC<Props> = (props) => {
                 if(loggedUser.data.type === 1){
                     setIsAdmin(true)
                 }
+                if(loggedUser.data.id === Number(id)){
+                    setIsMe(true)
+                }
+
                 const response = await api.get('/users/' + id)
     
                 const { data } = response
@@ -87,13 +92,34 @@ const UserEdit: React.FC<Props> = (props) => {
     async function saveUser(e: FormEvent){
         e.preventDefault()
 
-        await api.put('/users/' + id, {
+        const token = await api.put('/users/' + id, {
             username: email,
             bio, status, address, phone, role, name, birth: fixDate(birth), password, type
         })
         toast.success('Alterações salvas com sucesso', {position: toast.POSITION.TOP_CENTER})
+        if(isMe){
+            console.log(token)
+            login(token.data)
+        }
     
         push('/user/' + id)
+    }
+
+    function deleteUser(e: FormEvent){
+        e.preventDefault()
+
+        if(window.confirm("Deseja realmente deletar o usuário?")){
+            api.delete('/users/' + id)
+            .then(() => {
+                toast.success('Usuário deletado com sucesso.', {position: toast.POSITION.TOP_CENTER})
+                if(isMe){
+                    logout()
+                }
+                push('/')
+            }).catch(()=> {
+                toast.error('Falha ao deletar usuário.', {position: toast.POSITION.TOP_CENTER})
+            })
+        }
     }
 
     return (
@@ -177,6 +203,10 @@ const UserEdit: React.FC<Props> = (props) => {
 
                         <button className="save-button" type="submit">
                             Salvar
+                        </button>
+
+                        <button className="delete-button" onClick={deleteUser}>
+                            Deletar Usuário
                         </button>
                     </form>
                 </div>

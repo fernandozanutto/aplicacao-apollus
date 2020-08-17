@@ -66,3 +66,13 @@
     border-radius: 0.5rem;
     margin-top: 3rem;
 }
+
+#user-edit .delete-button {
+    width: 100%;
+    border: 1px solid #fcfcfc;
+    height: 4rem;
+    background-color: #BD0104;
+    color: #fff;
+    border-radius: 0.5rem;
+    margin-top: 3rem;
+}
