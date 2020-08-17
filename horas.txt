@@ -14,3 +14,7 @@
 110 min -> login ok, buscando usuarios na pagina principal ok, cadastro ok
 40 min -> crud usuarios back end
 190 min -> front end + back end praticamente pronto (ta tudo funcional, faltam os detalhes de interface etc)
+110 -> edição de usuário + criação de usuário pelo administrador
+80 min -> ajustes de layout
+
+total: ~20 horas
