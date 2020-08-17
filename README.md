@@ -10,15 +10,15 @@ Projeto feito com React (front-end) e Java Spring (back-end)
 ## Executando o projeto
 Primeiramente, clone este repositório e entre na pasta.
 
-Para instalar as dependências das pastas `client` e `server`, e executar as aplicações:
+Para instalar as dependências das pastas `client` e `server` e executar as aplicações:
 
-  Em um terminal rode:
+Em um terminal execute:
 
 `cd server`
 
 `mvn spring-boot:run`
 
-  Em outro terminal rode:
+Em outro terminal execute:
 
 `cd client`
 
