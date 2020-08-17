@@ -1,12 +1,6 @@
-#user-create .content {
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
 #user-create form button {
     background: 0;
     border: 0;
-    cursor: pointer;
 }
 
 #user-create .back-icon, #user-create .edit-icon {
@@ -20,7 +14,7 @@
 }
 
 #user-create .user-profile {
-    background-color: white;
+    background-color: #fff;
     margin-top: 2rem;
     padding: 2rem;
     width: 100%;
@@ -41,21 +35,13 @@
     margin-top: 2rem;
 }
 
-#user-create .user-avatar {
+/* #user-create .user-avatar {
     height: 12rem;
     width: 12rem;
     border-radius: 50%;
     object-fit: cover;
-}
+} */
 
-#user-create .user-header h1 {
-    font-size: 2.2rem;
-}
-
-#user-create .user-header p, #user-create .user-header h1 {
-    display: block;
-    text-align: center;
-}
 
 #user-create .info-group {
     line-height: 2.8rem;
@@ -64,16 +50,11 @@
     background-color: gray
 }
 
-#user-create .info-group label {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-}
-
 #user-create .save-button {
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;
-    background-color: green;
+    background-color: #008000;
     color: #fff;
     border-radius: 0.5rem;
     margin-top: 3rem;

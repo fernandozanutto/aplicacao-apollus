@@ -1,5 +1,5 @@
 #user-page .user-profile {
-    background-color: white;
+    background-color: #fff;
     margin-top: 2rem;
     padding: 2rem;
     width: 100%;
@@ -33,12 +33,12 @@
     margin-top: 2rem;
 }
 
-#user-page .user-avatar {
+/* #user-page .user-avatar {
     height: 12rem;
     width: 12rem;
     border-radius: 50%;
     object-fit: cover;
-}
+} */
 
 #user-page .user-header h1 {
     font-size: 2.2rem;
@@ -57,6 +57,6 @@
     border-radius: 1rem;
 }
 
-#user-page .user-info {
+#user-page span.user-info {
     font: 700 1.6rem 'Roboto';
 }

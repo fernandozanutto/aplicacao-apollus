@@ -29,19 +29,16 @@
 #signup-page hr.solid {
     border-top: 2px solid #bbb;
 }
-#signup-page .cadastrar {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 
 #signup-page form {
     margin-bottom: 2rem;
 }
 
-#signup-page h3 {
+#signup-page h1 {
+    font-size: 2.4rem;
+}
+
+#signup-page h2 {
     font-size: 1.4rem;
 }
 
@@ -49,26 +46,12 @@
     margin-top: 2rem;
 }
 
-#signup-page fieldset {
-    border: 0;
-}
-
-#signup-page .cadastrar {
-    text-decoration: none;
-    align-self: flex-end;
-    justify-self: flex-end;
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
-    margin-bottom: 1.2rem;
-    text-align: right;
-}
-
 #signup-page button {
     margin-top: 2rem;
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;
-    background-color: green;
+    background-color: #008000;
     color: #fff;
     border-radius: 0.5rem;
 }

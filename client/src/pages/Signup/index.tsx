@@ -57,12 +57,12 @@ function Signup() {
                     </div>
 
 
-                    <h2>
+                    <h1>
                         Cadastre-se.
-                    </h2>
-                    <h3>
+                    </h1>
+                    <h2>
                         Só precisaremos de alguns dados básicos, o resto pode preencher depois :)
-                    </h3>
+                    </h2>
 
                     <form onSubmit={handleSubmitSignup}>
                         <fieldset>

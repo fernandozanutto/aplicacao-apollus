@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import './styles.css'
 import { Link, useHistory } from 'react-router-dom'
 import { logout, isAuthenticated } from '../../services/auth'
 
 import downArrow from '../../assets/images/downarrow-icon.svg'
 import api from '../../services/api'
 
+import './styles.css'
 interface PageHeaderProps {
 
 }

@@ -44,7 +44,7 @@
 .user-item-container .user-footer {
     /* background-color: var(--color-main); */
     background-color: #B01C1E;
-    color: white;
+    color: #fff;
     width: 100%;
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@
     cursor: pointer;
     padding: 1rem;
     border: 0;
-    background-color: white;
+    background-color: #fff;
     border-radius: 0.5rem;
     font: 700 1.6rem 'Roboto';
 }

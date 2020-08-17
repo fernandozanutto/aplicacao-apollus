@@ -26,28 +26,24 @@ function Home() {
                 push('/login')
             }
             else {
-                try{
-                    api.get('/users').then((response) => {
-                        setUsers(response.data)
-                    })
-                } catch (err){
-                    console.log(err)
-                }
+                api.get('/users').then((response) => {
+                    setUsers(response.data)
+                })
             }
         })
     }, [push])
 
 
-    function searchUsers(e: FormEvent){
+    async function searchUsers(e: FormEvent){
         e.preventDefault()
 
-        api.get('/users', {
+        const response = await api.get('/users', {
             params: {
                 name: searchName
             }
-        }).then((response) => {
-            setUsers(response.data)
         })
+
+        setUsers(response.data)
     }
     
     return (

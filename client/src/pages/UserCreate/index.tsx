@@ -7,7 +7,7 @@ import Footer from '../../components/Footer'
 
 import saveIcon from '../../assets/images/save-icon.svg'
 import api from '../../services/api'
-import { isAuthenticated } from '../../services/auth'
+import { isAuthenticated, logout } from '../../services/auth'
 import { toast } from 'react-toastify'
 import backIcon from '../../assets/images/back-icon.svg'
 
@@ -35,6 +35,9 @@ const UserCreate = () => {
                         console.log(response.data)
                     }
                 })
+            } else {
+                logout()
+                push('/login')
             }
         })
     }, [push])
