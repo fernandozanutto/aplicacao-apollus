@@ -1,34 +1,43 @@
 Projeto feito com React (front-end) e Java Spring (back-end)
 
-## Executando o projeto
-1º Clone este repositório
+## Requisitos
+[Java Development Kit](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
 
-2º instale as dependências das pastas `client` e `server`, e execute as aplicações
+[Maven](https://maven.apache.org/download.cgi)
+
+[Node](https://nodejs.org/en/)
+
+## Executando o projeto
+Primeiramente, clone este repositório e entre na pasta.
+
+Para instalar as dependências das pastas `client` e `server`, e executar as aplicações:
 
   Em um terminal rode:
 
-    `cd server`
+`cd server`
 
-    `mvn spring-boot:run`
+`mvn spring-boot:run`
 
   Em outro terminal rode:
 
-    `cd client`
+`cd client`
 
-    `npm run install` ou `yarn install`
+`npm run install` ou `yarn install`
 
-    `npm run start` ou `yarn start`
+`npm run start` ou `yarn start`
+
 
 Ao rodar a aplicação React, já deve abrir uma página no navegador, caso não abra, acesse `http://localhost:3000`
 
+Ao rodar o servidor back-end foi criado um banco de dados já populado com alguns dados de exemplo, incluindo um usuário administrador. Este banco de dados está apenas em memória, então caso o servidor seja reiniciado, as alterações do banco de dados serão perdidas.
 
-Ao rodar o servidor back-end foi criado um banco de dados já populado com alguns dados de exemplo, incluindo um usuário administrador.
+Para fazer login:
 
-Usuário de administrador: `admin@admin.com`
+Usuário administrador: `admin@admin.com`
 
-Senha de adminstrador: `admin`
+Senha adminstrador: `admin`
 
 Usuário comum: `user@user.com`
 
-Senha de usuário: `123`
+Senha usuário: `123`
 
