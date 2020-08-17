@@ -5,19 +5,19 @@ Projeto feito com React (front-end) e Java Spring (back-end)
 
 2º instale as dependências das pastas `client` e `server`, e execute as aplicações
 
-Em um terminal rode:
+  Em um terminal rode:
 
-`cd server`
+    `cd server`
 
-`mvn spring-boot:run`
+    `mvn spring-boot:run`
 
-Em outro terminal rode:
+  Em outro terminal rode:
 
-`cd client`
+    `cd client`
 
-`npm run install` ou `yarn install`
+    `npm run install` ou `yarn install`
 
-`npm run start` ou `yarn start`
+    `npm run start` ou `yarn start`
 
 Ao rodar a aplicação React, já deve abrir uma página no navegador, caso não abra, acesse `http://localhost:3000`
 
