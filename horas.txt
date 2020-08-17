@@ -17,5 +17,6 @@
 110 -> edição de usuário + criação de usuário pelo administrador
 80 min -> ajustes de layout
 30min -> quase esqueço da parte de buscar usuários xD
+40min -> deletar usuario + nao deslogar se altera o proprio email
 
-total: ~20 horas
+total: ~21 horas

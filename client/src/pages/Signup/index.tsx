@@ -29,7 +29,7 @@ function Signup() {
             )
 
             if(response.data){
-                toast.success("Sucesso! Agora já pode fazer o login!")
+                toast.success("Sucesso! Agora já pode fazer o login!", {position: toast.POSITION.TOP_CENTER})
                 history.push('/login')
             }
         } catch (err) {
