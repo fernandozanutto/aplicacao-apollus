@@ -1,3 +1,24 @@
+
+create table if not exists users(
+    id int auto_increment primary key,
+    username varchar(255),
+    password varchar(255),
+    name varchar(255),
+    status varchar(255),
+    birth date,
+    role varchar(255),
+    address varchar(255),
+    bio varchar(255),
+    phone varchar(255),
+    lastlogin datetime,
+    type int,
+    constraint UK_r43af9ap4edm43mmtq01oddj6 unique (username)
+);
+
+
+
+
+
 INSERT INTO users(id, username, password, name, type) VALUES (1, 'admin@admin.com', '$2a$10$koxJdWNKBT15OvLdm5uZq.aFCSxJ5c2bBx4TIx1sKLnjAKqMepdvW', 'Administrador', 1);
 INSERT INTO users(id, username, password, name, type, status) VALUES (2, 'user@user.com', '$2a$10$X5Psw71IBea2/s3CU0l1NuSwz7G4PETUqp6dpOCn/8sI.yf2Am2Wu', 'Fernando Zanutto', 2, 'Um status de exemplo aqui');
 
