@@ -16,7 +16,7 @@
 }
 
 .menu-dropdown {
-    margin-right: 1rem;
+    padding-right: 1rem;
     color: #fff;
     cursor: pointer;
     height: 100%;
@@ -29,7 +29,6 @@
     align-content: center;
     justify-content: center;
     line-height: 56px;
-    
 }
 
 .menu-dropdown img {
@@ -41,9 +40,8 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: #5e5e5e;
     right: 0;
-
 }
 
 .menu-dropdown:hover .dropdown-content{
@@ -54,16 +52,18 @@
     display: block;
     text-decoration: none;
     padding: 2rem;
-    color: black;
+    color: #fff;
+    text-align: right;
 }
 
 .dropdown-content button{
     border: 0;
-    background-color: white;
+    color: #fff;
+    background-color: #5e5e5e;
     width: 100%;
 }
 
 
 .dropdown-content *:hover {
-    background-color: rgb(177, 177, 177);
+    background-color: rgb(129, 129, 129);
 }

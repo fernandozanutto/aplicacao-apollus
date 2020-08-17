@@ -5,6 +5,7 @@
     background-color: white;
     border-radius: 0.5rem;
     width: 100%;
+    max-width: 350px;
 }
 
 #login-page .content > * {
@@ -12,29 +13,44 @@
 }
 
 #login-page fieldset {
-    display: flex;
-    flex-direction: column;
     border: 0;
-    height: 20rem;
+}
+
+#login-page form {
+    margin-bottom: 2rem;
 }
 
 #login-page .cadastrar {
-    text-decoration: none;
-    align-self: flex-end;
-    justify-self: flex-end;
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
-    margin-bottom: 1.2rem;
-    text-align: right;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
-#login-page button {
+#login-page .cadastrar h4 {
+    vertical-align: middle;
+    
+    height: 100%;
+}
+
+#login-page .cadastrar button {
+    padding: 1rem;
+    border: 1px solid var(--color-main);
+    height: 4rem;
+    background-color: white;
+    color: var(--color-main);
+    border-radius: 0.5rem;
+}
+
+#login-page .login button {
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;
     background-color: green;
     color: #fff;
     border-radius: 0.5rem;
+    margin-top: 1.4rem;
 }
 
 
@@ -56,9 +72,23 @@
     font-size: 1.4rem;
 }
 
-@media(min-width: 700px){
-    .landing-content {
+#login-page hr.solid {
+    border-top: 2px solid #bbb;
+}
+
+
+
+@media(min-width: 800px){
+    #login-page .content {
         flex-direction: row;
         justify-content: space-around;
+        margin-top: -20rem;
+    }
+    #login-page .login-form {
+        max-width: 450px;
+    }
+
+    #login-page .content {
+        max-width: 900px;
     }
 }

@@ -14,12 +14,11 @@ interface MatchParams {
     id?: string
 }
 
-interface Props extends RouteComponentProps<MatchParams> {
-}
+interface Props extends RouteComponentProps<MatchParams> {}
 
 const UserPage: React.FC<Props> = (props) => {
 
-    const [id, setId] = useState(props.match.params.id)
+    const id = props.match.params.id
 
     const {push} = useHistory()
 
@@ -32,7 +31,9 @@ const UserPage: React.FC<Props> = (props) => {
     const [email, setEmail] = useState("")
     const [bio, setBio] = useState("")
     const [age, setAge] = useState(0)
+    const [type, setType] = useState(2)
     const [isMe, setIsMe] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
 
     useEffect(() => {
         isAuthenticated().then(response => {
@@ -42,21 +43,24 @@ const UserPage: React.FC<Props> = (props) => {
             }
         })
 
-        api.get('/check-permission/' + id).then(response => {
-            if(response){
+        api.get('/me').then(response => {
+            if(response.data.type === 1){
+                setIsMe(true)
+                setIsAdmin(true)
+            }
+            if(response.data.id === Number(id)){
                 setIsMe(true)
             }
         }).catch(err => {
             setIsMe(false)
         })
-    }, [])
+    }, [push, id])
 
 
     useEffect(() => {
         api.get('/users/' + id).then((response) => {
             const { data } = response
             
-
             // no caso de um campo opicional vir nulo, usar uma string vazia
             setName(data.name)
             setAddress(data.address || "")
@@ -64,6 +68,7 @@ const UserPage: React.FC<Props> = (props) => {
             setRole(data.role || "")
             setPhone(data.phone || "")
             setEmail(data.username)
+            setType(data.type || 2)
 
             if(data.bio){
                 const formattedBio = data.bio.replace("\r\n", "\\r\\n")
@@ -74,9 +79,6 @@ const UserPage: React.FC<Props> = (props) => {
             
             if(data.birth){
                 const birthDate = new Date(data.birth)
-                console.log(data.birth)
-                console.log(new Date(data.birth).getTimezoneOffset())
-                console.log(new Date(data.birth).getUTCMonth())
 
                 const formattedBirthDate = birthDate.getUTCDate() + "/" 
                     + String(birthDate.getUTCMonth() + 1).padStart(2, "0") + "/" 
@@ -92,9 +94,11 @@ const UserPage: React.FC<Props> = (props) => {
                 setBirth("")
                 setAge(0)
             }
+        }).catch(err => {
+            push('/')
         })
 
-    }, [])
+    }, [id, push])
     
     return (
         <div id="user-page" className="container">
@@ -110,7 +114,7 @@ const UserPage: React.FC<Props> = (props) => {
                             <img className="back-icon" src={backIcon} alt="Voltar"/>
                         </Link>
                         {isMe ? (
-                        <Link to="/user/1/edit">
+                        <Link to={`/user/${id}/edit`}>
                             <img className="edit-icon" src={editIcon} alt="Voltar"/>
                         </Link>
                         ) : null}
@@ -154,6 +158,12 @@ const UserPage: React.FC<Props> = (props) => {
                     <div className="info-group">
                         Email: <span className="user-info">{email}</span>
                     </div>
+
+                    {isAdmin ? (
+                        <div className="info-group">
+                            Tipo: <span className="user-info">{type === 1 ? "Administrador" : "Usuário"}</span>
+                        </div>
+                    ) : null}
 
                 </div>
                 

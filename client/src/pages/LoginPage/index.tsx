@@ -1,11 +1,12 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useState, useEffect } from 'react'
 
 import './styles.css'
 import PageHeader from '../../components/PageHeader'
 import { Link, useHistory } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import api from '../../services/api'
-import { login } from '../../services/auth'
+import { login, isAuthenticated } from '../../services/auth'
+import { toast } from 'react-toastify'
 
 function LoginPage() {
 
@@ -13,21 +14,26 @@ function LoginPage() {
 
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
+
+    useEffect(() => {
+        isAuthenticated().then(response => {
+            if(response) history.push('/')
+        })
+    }, [history])
     
 
     async function handleSubmitLogin(e: FormEvent){
         e.preventDefault()
 
-        const a = await api.post('/authenticate', {
-                username: user, password
-            }
-        )
-
-        if(a.status === 200){
-            login(a.data.token)
+        try {
+            const response = await api.post('/authenticate', {
+                    username: user, password
+                }
+            )
+            login(response.data.token)
             history.push('/')
-        } else {
-            // TODO: do something
+        } catch (err){
+            toast.error('Senha incorreta. Tente novamente.', {position: toast.POSITION.TOP_CENTER})
         }
     }
 
@@ -40,14 +46,14 @@ function LoginPage() {
 
             <main className="content">
 
-                <div>
-                    <h1> Olá, tudo bem? </h1>
+                <div className="login-text">
+                    <h1> Olá, seja bem vindo! </h1>
                 </div>
 
                 <div className="login-form">
 
                     <form onSubmit={handleSubmitLogin}>
-                        <fieldset>
+                        <fieldset className="login">
                             <div className="input-block">
                                 <label htmlFor="login">E-mail</label>
                                 <input type="text" onChange={e => setUser(e.target.value)}/>
@@ -58,11 +64,20 @@ function LoginPage() {
                                 <input type="password" onChange={e => setPassword(e.target.value)}/>
                             </div>
 
-                            <Link className="cadastrar" to="/signup">Não possui conta? Cadastre-se</Link>
-
                             <button type="submit">Entrar</button>
                         </fieldset>
                     </form>
+                    
+                    <hr className="solid" />
+
+                    <div className="cadastrar">
+                        <h4>Não possui uma conta?</h4>
+
+                        <Link to="/signup">
+                            <button>Cadastre-se</button>
+                        </Link>
+                    </div>
+                    
                 </div>
             </main>
 

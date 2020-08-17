@@ -2,24 +2,17 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 
 import './styles.css'
-import { RouteComponentProps, Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Footer from '../../components/Footer'
 
-import backIcon from '../../assets/images/back-icon.svg'
 import saveIcon from '../../assets/images/save-icon.svg'
 import api from '../../services/api'
-import { isAuthenticated, logout } from '../../services/auth'
+import { isAuthenticated } from '../../services/auth'
 import { toast } from 'react-toastify'
 
-interface MatchParams {
-    id: string
-}
 
-interface Props extends RouteComponentProps<MatchParams> {}
-
-const UserEdit: React.FC<Props> = (props) => {
-    const id = props.match.params.id
-
+const UserCreate = () => {
+   
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
     const [status, setStatus] = useState("")
@@ -30,65 +23,40 @@ const UserEdit: React.FC<Props> = (props) => {
     const [bio, setBio] = useState("")
     const [password, setPassword] = useState("")
     const [type, setType] = useState("2")
-    const [isAdmin, setIsAdmin] = useState(false)
 
-
-    const { push, goBack } = useHistory()
+    const { push } = useHistory()
 
     useEffect(() => {
 
-        async function pageLoaded(){
-            
-            const loggedUser = await api.get('/me')
-            
-            if(loggedUser.data.id !== Number(id) && loggedUser.data.type !== 1){
-                console.log('nao tem autorização')
-                goBack();
-            }
-            else {
-                if(loggedUser.data.type === 1){
-                    setIsAdmin(true)
-                }
-                const response = await api.get('/users/' + id)
-    
-                const { data } = response
-    
-                // no caso de um campo opicional vir nulo, usar uma string vazia
-                setName(data.name)
-                setAddress(data.address || "")
-                setStatus(data.status || "")
-                setRole(data.role || "")
-                setPhone(data.phone || "")
-                setEmail(data.username)
-                setBio(data.bio || "")
-                setBirth(data.birth || "")
-                setType(data.type || 2)
-            }
-        }
-
         isAuthenticated().then(response => {
-            if(!response){
-                logout()
-                push('/login')
-            } else {
-                pageLoaded()
+            if(response){
+                api.get('/me').then(response => {
+                    if(response.data.type !== 1){
+                        console.log(response.data)
+                    }
+                })
             }
-            
         })
-
-    }, [goBack, id, push])
+    }, [push])
 
     
     async function saveUser(e: FormEvent){
         e.preventDefault()
 
-        await api.put('/users/' + id, {
-            username: email,
-            bio, status, address, phone, role, name, birth, password, type
-        })
-        toast.success('Alterações salvas com sucesso', {position: toast.POSITION.TOP_CENTER})
+        try {
+            const response = await api.post('/users/', {
+                username: email,
+                bio, status, address, phone, role, name, birth, password, type
+            })
     
-        push('/user/' + id)
+            console.log(response)
+            toast.success('Usuário criado com sucesso', {position: toast.POSITION.TOP_CENTER})
+        
+            push('/user/' + response.data.id)
+        } catch(err) {
+            toast.error('Email já cadastrado.', {position: toast.POSITION.TOP_CENTER})
+        }
+        
     }
 
     return (
@@ -101,9 +69,7 @@ const UserEdit: React.FC<Props> = (props) => {
                 <div className="user-profile">
                     <form onSubmit={saveUser}>
                         <div className="header-icons">
-                            <Link to={`/user/${id}`}>
-                                <img className="back-icon" src={backIcon} alt="Voltar"/>
-                            </Link>
+                            <div></div>
 
                             <button type="submit">
                                 <img className="edit-icon" src={saveIcon} alt="Salvar"/>
@@ -126,7 +92,7 @@ const UserEdit: React.FC<Props> = (props) => {
 
                         <div className="input-block">
                             <label>Senha</label>
-                            <input type="password" onChange={(e) => {setPassword(e.target.value)}} value={password} placeholder="Deixe em branco para manter a senha atual"/>
+                            <input type="password" required onChange={(e) => {setPassword(e.target.value)}} value={password} />
                         </div>
                         
 
@@ -160,7 +126,6 @@ const UserEdit: React.FC<Props> = (props) => {
                             <input type="text" onChange={(e) => {setAddress(e.target.value)}} value={address}/>
                         </div>
 
-                        {isAdmin ? (
                         <div className="input-block">
                             <label>Tipo</label>
                             <select value={type} onChange={(e) => {setType(e.target.value)}}>
@@ -168,7 +133,6 @@ const UserEdit: React.FC<Props> = (props) => {
                                 <option value="1">Administrador</option>
                             </select>
                         </div>
-                        ) : null}
 
                         <button className="save-button" type="submit">
                             Salvar
@@ -185,4 +149,4 @@ const UserEdit: React.FC<Props> = (props) => {
 }
 
 
-export default UserEdit
+export default UserCreate

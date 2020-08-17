@@ -6,6 +6,39 @@
     border-radius: 0.5rem;
 }
 
+#signup-page .back-icon{
+    width: 2rem;
+    height: auto;
+}
+#signup-page .header-icons span {
+    margin-left: 0.8rem;
+}
+#signup-page .header-icons a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #555;
+}
+#signup-page .header-icons {
+    margin-bottom: 2rem;
+}
+
+#signup-page hr.solid {
+    border-top: 2px solid #bbb;
+}
+#signup-page .cadastrar {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#signup-page form {
+    margin-bottom: 2rem;
+}
+
 #signup-page h3 {
     font-size: 1.4rem;
 }

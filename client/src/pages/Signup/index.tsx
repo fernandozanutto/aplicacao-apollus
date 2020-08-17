@@ -4,7 +4,9 @@ import './styles.css'
 import PageHeader from '../../components/PageHeader'
 import { Link, useHistory } from 'react-router-dom'
 import Footer from '../../components/Footer'
+import backIcon from '../../assets/images/back-icon.svg'
 import api from '../../services/api'
+import { toast } from 'react-toastify'
 
 function Signup() {
 
@@ -13,24 +15,26 @@ function Signup() {
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
-    const [phone, setPhone] = useState("")
     
 
     async function handleSubmitSignup(e: FormEvent){
         e.preventDefault()
 
-        const a = await api.post('/signup', {
-                username: user, 
-                password, 
-                name, 
-                phone
-            }
-        )
+        try {
+            const response = await api.post('/signup', {
+                    username: user, 
+                    password, 
+                    name
+                }
+            )
 
-        if(a.data){
-            history.push('/login')
+            if(response.data){
+                toast.success("Sucesso! Agora já pode fazer o login!")
+                history.push('/login')
+            }
+        } catch (err) {
+            toast.error("Email já cadastrado.", {position: toast.POSITION.TOP_CENTER})
         }
-        
     }
 
     return (
@@ -44,6 +48,15 @@ function Signup() {
 
                 <div className="signup-form">
 
+                    <div className="header-icons">
+                        <Link to="/">
+                            <img className="back-icon" src={backIcon} alt="Voltar"/>
+                            <span>Já possui conta? Volte e faça o login.</span>
+                        </Link>
+                        
+                    </div>
+
+
                     <h2>
                         Cadastre-se.
                     </h2>
@@ -55,26 +68,18 @@ function Signup() {
                         <fieldset>
                             <div className="input-block">
                                 <label htmlFor="login">Nome completo</label>
-                                <input type="text" onChange={e => setName(e.target.value)}/>
+                                <input type="text" required onChange={e => setName(e.target.value)}/>
                             </div>
                             
                             <div className="input-block">
                                 <label htmlFor="login">Senha</label>
-                                <input type="password" onChange={e => setPassword(e.target.value)}/>
+                                <input type="password" required onChange={e => setPassword(e.target.value)}/>
                             </div>
 
                             <div className="input-block">
                                 <label htmlFor="login">E-mail</label>
-                                <input type="text" onChange={e => setUser(e.target.value)}/>
+                                <input type="text" required onChange={e => setUser(e.target.value)}/>
                             </div>
-
-                            <div className="input-block">
-                                <label htmlFor="login">Telefone</label>
-                                <input type="text" onChange={e => setPhone(e.target.value)}/>
-                            
-                            </div>
-
-                            <Link className="cadastrar" to="/login">Já possui conta? Faça o login</Link>
 
                             <button type="submit">Confirmar</button>
                         </fieldset>

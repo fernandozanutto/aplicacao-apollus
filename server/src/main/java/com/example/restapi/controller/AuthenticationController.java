@@ -1,17 +1,15 @@
 package com.example.restapi.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.restapi.config.JwtTokenUtil;
-import com.example.restapi.model.DAOUser;
+import com.example.restapi.model.UserDAO;
 import com.example.restapi.model.JwtRequest;
 import com.example.restapi.model.JwtResponse;
 import com.example.restapi.model.UserDTO;
-import com.example.restapi.service.JwtUserDetailsService;
+import com.example.restapi.service.UserService;
 
 import io.jsonwebtoken.ExpiredJwtException;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +20,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @CrossOrigin
-public class JwtAuthenticationController {
+public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -34,7 +31,7 @@ public class JwtAuthenticationController {
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private JwtUserDetailsService userDetailsService;
+	private UserService userDetailsService;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -55,7 +52,7 @@ public class JwtAuthenticationController {
 
 
 	@GetMapping("/users")
-	public List<DAOUser> getUsers(){
+	public List<UserDAO> getUsers(){
 		return userDetailsService.findAll();
 	}
 
@@ -69,7 +66,7 @@ public class JwtAuthenticationController {
 			jwtToken = jwt.substring(7);
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-				DAOUser user = userDetailsService.findUserByUsername(username);
+				UserDAO user = userDetailsService.findUserByUsername(username);
 				return ResponseEntity.ok().body(user);
 
 			} catch (IllegalArgumentException e) {
@@ -91,7 +88,7 @@ public class JwtAuthenticationController {
 			jwtToken = jwt.substring(7);
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-				DAOUser user = userDetailsService.findUserByUsername(username);
+				UserDAO user = userDetailsService.findUserByUsername(username);
 				return ResponseEntity.ok().body(true);
 
 			} catch (IllegalArgumentException e) {
@@ -115,19 +112,15 @@ public class JwtAuthenticationController {
 			jwtToken = jwt.substring(7);
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-				DAOUser myUser = userDetailsService.findUserByUsername(username);
+				UserDAO myUser = userDetailsService.findUserByUsername(username);
 
-				DAOUser accessedUser = userDetailsService.findById(id).orElse(null);
+				UserDAO accessedUser = userDetailsService.findById(id).orElse(null);
 
 				if(accessedUser == null){
 					return new ResponseEntity<String>("Não autorizado", HttpStatus.FORBIDDEN);
 				}
 
-				System.out.println(myUser.getUsername() + " " + accessedUser.getUsername());
-				System.out.println("tentando acessar: " + accessedUser.getId() + " eu sou: " + myUser.getId());
-				System.out.println(accessedUser.getType());
-
-				if(myUser.getType() == 1 || accessedUser.getId() == myUser.getId()){
+				if(myUser.getType() == 1 || accessedUser.getId() == myUser.getId() ){
 					return ResponseEntity.ok().body(true);
 				} else {
 					return new ResponseEntity<String>("Não autorizado", HttpStatus.FORBIDDEN);
@@ -147,7 +140,7 @@ public class JwtAuthenticationController {
 	@GetMapping("/users/{id}")
 	public ResponseEntity<?> findById(@PathVariable int id){
 		
-		DAOUser a = userDetailsService.findById(id).orElse(null);
+		UserDAO a = userDetailsService.findById(id).orElse(null);
 
 		if(a == null){
 			return ResponseEntity.notFound().build();
@@ -158,9 +151,9 @@ public class JwtAuthenticationController {
 
 
 	@PutMapping(value = "users/{id}")
-	public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody DAOUser user){
-		
-		DAOUser record = userDetailsService.update(id, user);
+	public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDAO user){
+
+		UserDAO record = userDetailsService.update(id, user);
 
 		if(record == null){
 			return ResponseEntity.notFound().build();
@@ -169,9 +162,21 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok().body(record);
 	}
 
+	@PostMapping(value = "users")
+	public ResponseEntity<?> createUser(@RequestBody UserDAO user){
+		UserDAO newUser = userDetailsService.create(user);
+
+		if(newUser.getId() != 0){
+			return ResponseEntity.ok().body(newUser.getId());
+		}
+
+		return ResponseEntity.badRequest().build();
+	}
+
+
 	@DeleteMapping(value = "users/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable int id) {
-		DAOUser user = userDetailsService.findById(id).orElse(null);
+		UserDAO user = userDetailsService.findById(id).orElse(null);
 
 		if(user == null){
 			return ResponseEntity.notFound().build();

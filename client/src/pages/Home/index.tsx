@@ -26,7 +26,6 @@ function Home() {
             else {
                 try{
                     api.get('/users').then((response) => {
-                        console.log(response)
                         setUsers(response.data)
                     })
                 } catch (err){
@@ -34,7 +33,7 @@ function Home() {
                 }
             }
         })
-    }, [])
+    }, [push])
     
     return (
 

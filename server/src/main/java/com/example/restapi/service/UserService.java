@@ -1,11 +1,12 @@
 package com.example.restapi.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.restapi.dao.UserDao;
-import com.example.restapi.model.DAOUser;
+import com.example.restapi.dao.UserRepository;
+import com.example.restapi.model.UserDAO;
 import com.example.restapi.model.UserDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtUserDetailsService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -27,7 +28,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		DAOUser user = userDao.findByUsername(username);
+		UserDAO user = userRepository.findByUsername(username);
 
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
@@ -37,8 +38,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		}
 	}
 
-	public DAOUser findUserByUsername(String username){
-		DAOUser user = userDao.findByUsername(username);
+	public UserDAO findUserByUsername(String username){
+		UserDAO user = userRepository.findByUsername(username);
 		if(user == null){
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		} else {
@@ -46,20 +47,24 @@ public class JwtUserDetailsService implements UserDetailsService {
 		}
 	}
 
-	public DAOUser save(UserDTO user) {
-		DAOUser newUser = new DAOUser();
+	public UserDAO save(UserDTO user) {
+		UserDAO newUser = new UserDAO();
 		newUser.setUsername(user.getUsername());
 		newUser.setName(user.getName());
-		newUser.setPhone(user.getPhone());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 
-		return userDao.save(newUser);
+		return userRepository.save(newUser);
+	}
+
+	public UserDAO create(UserDAO user) {
+		user.setPassword(bcryptEncoder.encode(user.getPassword()));
+		return userRepository.save(user);
 	}
 
 
-	public DAOUser update(int id, DAOUser user){
-		DAOUser record = userDao.findById(id).orElse(null);
-		
+	public UserDAO update(int id, UserDAO user){
+		UserDAO record = userRepository.findById(id).orElse(null);
+
 		if(record == null){
 			return null;
 		}
@@ -72,21 +77,34 @@ public class JwtUserDetailsService implements UserDetailsService {
 		record.setBio(user.getBio());
 		record.setPhone(user.getPhone());
 		record.setLastlogin(user.getLastlogin());
+		record.setType(user.getType());
 
-		userDao.save(record);
+		if(user.getPassword() != null && !user.getPassword().equals(""))
+			record.setPassword(bcryptEncoder.encode(user.getPassword()));
+
+		userRepository.save(record);
 
 		return record;
 	}
 
 	public void deleteById(int id){
-		userDao.deleteById(id);
+		userRepository.deleteById(id);
 	}
 
-	public List<DAOUser> findAll(){
-		return userDao.findAll();
+	public List<UserDAO> findAll(){
+		return userRepository.findAll();
 	}
 
-	public Optional<DAOUser> findById(int id){
-		return userDao.findById(id);
+	public Optional<UserDAO> findById(int id){
+		return userRepository.findById(id);
+	}
+
+	public void updateLastLogin(int id) {
+		UserDAO record = userRepository.findById(id).orElse(null);
+
+		if(record != null){
+			record.setLastlogin(LocalDateTime.now());
+			userRepository.save(record);
+		}
 	}
 }

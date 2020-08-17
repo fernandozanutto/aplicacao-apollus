@@ -6,14 +6,13 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "users")
-public class DAOUser {
+public class UserDAO {
 
     enum Type {
         Admin(1), User(2);
@@ -32,7 +31,7 @@ public class DAOUser {
     private String username;
 
     @Column
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column

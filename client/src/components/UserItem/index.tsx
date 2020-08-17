@@ -34,7 +34,7 @@ const UserItem:React.FC<UserProps> = ({user}) => {
             <div className="user-footer">
                 Online última vez: {user.lastlogin ? lastLogin.toLocaleString() : "Nunca"}
 
-                <Link to="/user/1">
+                <Link to={`/user/${user.id}`}>
                     <button className="user-button">Visitar perfil</button>
                 </Link>
             </div>

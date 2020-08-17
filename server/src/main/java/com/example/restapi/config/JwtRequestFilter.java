@@ -1,17 +1,15 @@
 package com.example.restapi.config;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.restapi.model.DAOUser;
-import com.example.restapi.service.JwtUserDetailsService;
+import com.example.restapi.model.UserDAO;
+import com.example.restapi.service.UserService;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +25,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
-	private JwtUserDetailsService jwtUserDetailsService;
+	private UserService userService;
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -57,7 +55,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		// Once we get the token validate it.
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = this.userService.loadUserByUsername(username);
 
 			// if token is valid configure Spring Security to manually set
 			// authentication
@@ -72,10 +70,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				// Spring Security Configurations successfully.
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
-				DAOUser user = jwtUserDetailsService.findUserByUsername(username);
-				user.setLastlogin(LocalDateTime.now());
-				jwtUserDetailsService.update(user.getId(), user);
-
+				UserDAO user = userService.findUserByUsername(username);
+				userService.updateLastLogin(user.getId());
 			}
 		}
 		chain.doFilter(request, response);

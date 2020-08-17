@@ -17,6 +17,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     const [userLogged, setUserLogged] = useState(false)
     const [myId, setMyId] = useState(0)
     const [myName, setMyName] = useState("")
+    const [myType, setMyType] = useState(2)
 
     function logoutClick(){
         logout()
@@ -24,16 +25,15 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     }
 
     useEffect(() => {
+
         isAuthenticated().then(response => {
             setUserLogged(response)
 
             if(response){
                 api.get('/me').then(response => {
-                    console.log('euuuu')
-                    console.log(response)
-
                     setMyId(response.data.id)
                     setMyName(response.data.name)
+                    setMyType(response.data.type)
                 })
             }
         })
@@ -52,6 +52,9 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
                         <img src={downArrow} alt="Seta para baixo"/>
                     </div>
                     <div className="dropdown-content">
+                        {myType === 1 ? (
+                            <Link to={`/user/create`}>Cadastrar novo usuário</Link>
+                        ) : null}
                         <Link to={`/user/${myId}`}>Meu perfil</Link>
                         <button onClick={logoutClick}>Sair</button>
                     </div>

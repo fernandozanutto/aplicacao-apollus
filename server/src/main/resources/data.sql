@@ -1,5 +1,5 @@
 INSERT INTO users(id, username, password, name, type) VALUES (1, 'admin@admin.com', '$2a$10$koxJdWNKBT15OvLdm5uZq.aFCSxJ5c2bBx4TIx1sKLnjAKqMepdvW', 'Administrador', 1);
-INSERT INTO users(id, username, password, name, type) VALUES (2, 'user@user.com', '$2a$10$X5Psw71IBea2/s3CU0l1NuSwz7G4PETUqp6dpOCn/8sI.yf2Am2Wu', 'Fernando Zanutto', 2);
+INSERT INTO users(id, username, password, name, type, status) VALUES (2, 'user@user.com', '$2a$10$X5Psw71IBea2/s3CU0l1NuSwz7G4PETUqp6dpOCn/8sI.yf2Am2Wu', 'Fernando Zanutto', 2, 'Um status de exemplo aqui');
 
 insert into users (birth, name, username, role, bio, type, status) values ('1977-10-15', 'Christophorus Pumphreys', 'cpumphreys0@miitbeian.gov.cn', 'VP Marketing', 'Fusce consequat. Nulla nisl. Nunc nisl.', 2, 'Duis at velit eu est congue elementum.');
 insert into users (birth, name, username, role, bio, type, status) values ('1992-01-19', 'Alysia Tedman', 'atedman1@senate.gov', 'Software Consultant', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 2, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.');
