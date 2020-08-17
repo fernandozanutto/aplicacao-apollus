@@ -1,3 +1,44 @@
 #home-page .home-page-title {
     margin: 2rem 0;
 }
+
+#home-page form {
+    display: flex;
+    margin-bottom: 2rem;
+    width: 50%;
+}
+
+#home-page input {
+    width: 100%;
+    font-size: 1.6rem;
+    height: 4rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b0aec7;
+}
+
+#home-page form button {
+    margin-left: 1rem;
+    background-color: #B01C1E;
+    border: 0;
+    width: 4rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    position: relative;
+
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-page form button:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#home-page form button img {
+   width: 2.4rem;
+}

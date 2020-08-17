@@ -21,7 +21,7 @@ const UserItem:React.FC<UserProps> = ({user}) => {
     return (
         <div className="user-item-container">
             <div className="user-header">
-                <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/>
+                {/* <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/> */}
                 <div>
                     <h1>{user.name}</h1>
                     <p>{user.status}</p>

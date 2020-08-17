@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FormEvent } from 'react'
 
 import './styles.css'
 import PageHeader from '../../components/PageHeader'
@@ -10,12 +10,14 @@ import { useHistory } from 'react-router-dom'
 import api from '../../services/api'
 import {User} from '../../components/UserItem'
 
+import searchIcon from '../../assets/images/search-icon.svg'
 
 function Home() {
 
     const {push} = useHistory()
 
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<User[]>([])
+    const [searchName, setSearchName] = useState("")
 
     useEffect(() => {
         isAuthenticated().then(response => {
@@ -34,6 +36,19 @@ function Home() {
             }
         })
     }, [push])
+
+
+    function searchUsers(e: FormEvent){
+        e.preventDefault()
+
+        api.get('/users', {
+            params: {
+                name: searchName
+            }
+        }).then((response) => {
+            setUsers(response.data)
+        })
+    }
     
     return (
 
@@ -45,12 +60,18 @@ function Home() {
             <main className="content">
 
                 <h1 className="home-page-title">Lista de Usuários</h1>
-
-                    {
-                        users.map((user: User) => (
-                            <UserItem key={user.id} user={user} />
-                        ))
-                    }
+                <form onSubmit={searchUsers}>
+                    <input type="text" placeholder="Buscar pelo nome de usuário" value={searchName} onChange={(e) => {setSearchName(e.target.value)}}/>
+                    <button type="submit">
+                        <img src={searchIcon} alt="Buscar"/>
+                    </button>
+                </form>
+                { users.length ?
+                    users.map((user: User) => (
+                        <UserItem key={user.id} user={user} />
+                    ))
+                    : "Nenhum usuário encontrado"
+                }
             </main>
 
             <Footer />

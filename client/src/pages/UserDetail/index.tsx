@@ -122,7 +122,7 @@ const UserPage: React.FC<Props> = (props) => {
                     
 
                     <div className="user-header">
-                        <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/>
+                        {/* <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/> */}
                         <div>
                             <h1>{name}</h1>
                             <p className="user-status">{status}</p>

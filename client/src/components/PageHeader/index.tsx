@@ -48,7 +48,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
             {userLogged ? (
                 <div className="menu-dropdown">
                     <div className="dropdown-title">
-                        Olá, {myName}
+                        Olá, {myName} {myType === 1 ? " (Admin)" : null}
                         <img src={downArrow} alt="Seta para baixo"/>
                     </div>
                     <div className="dropdown-content">

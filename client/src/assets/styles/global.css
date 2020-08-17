@@ -59,7 +59,32 @@ header, footer {
     max-width: 800px;
 }
 
-@media (min-width: 800px){
+.input-block label {
+    font-size: 1.4rem;
+}
+
+.input-block input, .input-block textarea, .input-block select {
+    width: 100%;
+    font-size: 1.6rem;
+    height: 4rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b0aec7;
+}
+
+.input-block textarea {
+    display: block;
+    min-height: 10rem;
+    resize: vertical;
+    
+}
+
+.input-block + .input-block {
+    margin-top: 1rem
+}
+
+@media (min-width: 850px){
     .container {
         width: 100%;
     }

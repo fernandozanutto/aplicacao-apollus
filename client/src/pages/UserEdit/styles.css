@@ -1,6 +1,3 @@
-#user-edit {
-    height: 100vh;
-}
 #user-edit .content {
     justify-content: flex-start;
     align-items: flex-start;
@@ -10,31 +7,6 @@
     background: 0;
     border: 0;
     cursor: pointer;
-}
-
-.input-block input, .input-block textarea {
-    width: 100%;
-    font-size: 1.6rem;
-    height: 4rem;
-    margin: 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #b0aec7;
-}
-
-.input-block textarea {
-    display: block;
-    min-height: 10rem;
-    resize: vertical;
-    
-}
-
-.input-block + .input-block {
-    margin-top: 1rem
-}
-
-.input-block label {
-    font-size: 1.4rem;
 }
 
 #user-edit .back-icon, #user-edit .edit-icon {
@@ -83,17 +55,6 @@
 #user-edit .user-header p, #user-edit .user-header h1 {
     display: block;
     text-align: center;
-}
-
-#user-edit .info-group {
-    line-height: 2.8rem;
-    padding: 0 2.4rem;
-    margin-bottom: 2.4rem;
-    background-color: gray
-}
-
-#user-edit .info-group label {
-    font-size: 1.4rem;
 }
 
 #user-edit .save-button {

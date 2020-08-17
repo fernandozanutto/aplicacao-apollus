@@ -8,6 +8,10 @@
     max-width: 350px;
 }
 
+#login-page .login-text {
+    text-align: right;
+}
+
 #login-page .content > * {
     margin: 2rem 0;
 }
@@ -54,31 +58,11 @@
 }
 
 
-.input-block input {
-    width: 100%;
-    font-size: 1.6rem;
-    height: 4rem;
-    margin: 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #b0aec7;
-}
-
-.input-block + .input-block {
-    margin-top: 1rem
-}
-
-.input-block label {
-    font-size: 1.4rem;
-}
-
 #login-page hr.solid {
     border-top: 2px solid #bbb;
 }
 
-
-
-@media(min-width: 800px){
+@media(min-width: 850px){
     #login-page .content {
         flex-direction: row;
         justify-content: space-around;
@@ -89,6 +73,10 @@
     }
 
     #login-page .content {
-        max-width: 900px;
+        max-width: 850px;
+    }
+
+    #login-page .content > * {
+        margin: 0 2rem;
     }
 }

@@ -1,102 +1,75 @@
-#user-edit {
-    height: 100vh;
-}
-#user-edit .content {
+#user-create .content {
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-#user-edit form button {
+#user-create form button {
     background: 0;
     border: 0;
     cursor: pointer;
 }
 
-.input-block input, .input-block textarea {
-    width: 100%;
-    font-size: 1.6rem;
-    height: 4rem;
-    margin: 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #b0aec7;
-}
-
-.input-block textarea {
-    display: block;
-    min-height: 10rem;
-    resize: vertical;
-    
-}
-
-.input-block + .input-block {
-    margin-top: 1rem
-}
-
-.input-block label {
-    font-size: 1.4rem;
-}
-
-#user-edit .back-icon, #user-edit .edit-icon {
+#user-create .back-icon, #user-create .edit-icon {
     width: 3rem;
     height: auto;
 }
 
-#user-edit .header-icons {
+#user-create .header-icons {
     display: flex;
     justify-content: space-between;
 }
 
-#user-edit .user-profile {
+#user-create .user-profile {
     background-color: white;
     margin-top: 2rem;
     padding: 2rem;
     width: 100%;
 }
 
-#user-edit .user-status {
+#user-create .user-status {
     font-size: 1.4rem;
 }
 
-#user-edit .user-header {
+#user-create .user-header {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 2.4rem
 }
 
-#user-edit .user-header div {
+#user-create .user-header div {
     margin-top: 2rem;
 }
 
-#user-edit .user-avatar {
+#user-create .user-avatar {
     height: 12rem;
     width: 12rem;
     border-radius: 50%;
     object-fit: cover;
 }
 
-#user-edit .user-header h1 {
+#user-create .user-header h1 {
     font-size: 2.2rem;
 }
 
-#user-edit .user-header p, #user-edit .user-header h1 {
+#user-create .user-header p, #user-create .user-header h1 {
     display: block;
     text-align: center;
 }
 
-#user-edit .info-group {
+#user-create .info-group {
     line-height: 2.8rem;
     padding: 0 2.4rem;
     margin-bottom: 2.4rem;
     background-color: gray
 }
 
-#user-edit .info-group label {
+#user-create .info-group label {
     font-size: 1.4rem;
+    margin-bottom: 1rem;
 }
 
-#user-edit .save-button {
+#user-create .save-button {
     width: 100%;
     border: 1px solid #fcfcfc;
     height: 4rem;

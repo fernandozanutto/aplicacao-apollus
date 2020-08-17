@@ -78,13 +78,18 @@ const UserEdit: React.FC<Props> = (props) => {
 
     }, [goBack, id, push])
 
+    function fixDate(date: string){
+        const tempDate = new Date(date)
+
+        return new Date(tempDate.getTime() + tempDate.getTimezoneOffset()*60*1000)
+    }
     
     async function saveUser(e: FormEvent){
         e.preventDefault()
 
         await api.put('/users/' + id, {
             username: email,
-            bio, status, address, phone, role, name, birth, password, type
+            bio, status, address, phone, role, name, birth: fixDate(birth), password, type
         })
         toast.success('Alterações salvas com sucesso', {position: toast.POSITION.TOP_CENTER})
     
@@ -110,9 +115,9 @@ const UserEdit: React.FC<Props> = (props) => {
                             </button>
                         </div>
                     
-                        <div className="user-header">
+                        {/* <div className="user-header">
                             <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/>
-                        </div>
+                        </div> */}
 
                         <div className="input-block">
                             <label>Nome</label>

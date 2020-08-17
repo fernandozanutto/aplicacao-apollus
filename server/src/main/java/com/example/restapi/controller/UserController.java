@@ -20,9 +20,10 @@ public class UserController {
     private UserService userDetailsService;
 
     @GetMapping("/users")
-    public List<UserDAO> getUsers(){
-        return userDetailsService.findAll();
+    public List<UserDAO> getUsersByName(@RequestParam(defaultValue="") String name){
+        return userDetailsService.findByNameContaining(name);
     }
+
 
     @GetMapping("/users/{id}")
     public ResponseEntity<?> findById(@PathVariable int id){
@@ -38,10 +39,8 @@ public class UserController {
 
 
     @PutMapping(value = "users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable int id, @ModelAttribute UserDAO user){
-
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDAO user){
         UserDAO record = userDetailsService.update(id, user);
-
         if(record == null){
             return ResponseEntity.notFound().build();
         }

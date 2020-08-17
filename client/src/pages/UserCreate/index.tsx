@@ -2,14 +2,14 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 
 import './styles.css'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 
 import saveIcon from '../../assets/images/save-icon.svg'
 import api from '../../services/api'
 import { isAuthenticated } from '../../services/auth'
 import { toast } from 'react-toastify'
-
+import backIcon from '../../assets/images/back-icon.svg'
 
 const UserCreate = () => {
    
@@ -39,6 +39,12 @@ const UserCreate = () => {
         })
     }, [push])
 
+    function fixDate(date: string){
+        const tempDate = new Date(date)
+
+        return new Date(tempDate.getTime() + tempDate.getTimezoneOffset()*60*1000)
+    }
+
     
     async function saveUser(e: FormEvent){
         e.preventDefault()
@@ -46,13 +52,13 @@ const UserCreate = () => {
         try {
             const response = await api.post('/users/', {
                 username: email,
-                bio, status, address, phone, role, name, birth, password, type
+                bio, status, address, phone, role, name, birth: fixDate(birth), password, type
             })
     
             console.log(response)
             toast.success('Usuário criado com sucesso', {position: toast.POSITION.TOP_CENTER})
         
-            push('/user/' + response.data.id)
+            push('/user/' + response.data)
         } catch(err) {
             toast.error('Email já cadastrado.', {position: toast.POSITION.TOP_CENTER})
         }
@@ -60,7 +66,7 @@ const UserCreate = () => {
     }
 
     return (
-        <div id="user-edit" className="container">
+        <div id="user-create" className="container">
             
             <PageHeader>
             </PageHeader>
@@ -69,16 +75,18 @@ const UserCreate = () => {
                 <div className="user-profile">
                     <form onSubmit={saveUser}>
                         <div className="header-icons">
-                            <div></div>
+                            <Link to='/'>
+                                <img className="back-icon" src={backIcon} alt="Voltar"/>
+                            </Link>
 
                             <button type="submit">
                                 <img className="edit-icon" src={saveIcon} alt="Salvar"/>
                             </button>
                         </div>
                     
-                        <div className="user-header">
+                        {/* <div className="user-header">
                             <img className="user-avatar" src="https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572.jpg" alt="Avatar do usuário"/>
-                        </div>
+                        </div> */}
 
                         <div className="input-block">
                             <label>Nome</label>

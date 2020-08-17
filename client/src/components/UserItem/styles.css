@@ -20,6 +20,7 @@
     width: 6rem;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: 2.4rem;
 
 }
 
@@ -33,9 +34,6 @@
     font-style: italic;
 }
 
-.user-item-container .user-header div {
-    margin-left: 2.4rem;
-}
 
 .user-item-container .user-bio {
     line-height: 2.8rem;

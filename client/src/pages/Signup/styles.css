@@ -6,13 +6,15 @@
     border-radius: 0.5rem;
 }
 
-#signup-page .back-icon{
+#signup-page .back-icon {
     width: 2rem;
     height: auto;
 }
+
 #signup-page .header-icons span {
     margin-left: 0.8rem;
 }
+
 #signup-page .header-icons a {
     display: flex;
     align-items: center;
@@ -48,8 +50,6 @@
 }
 
 #signup-page fieldset {
-    display: flex;
-    flex-direction: column;
     border: 0;
 }
 
@@ -71,30 +71,4 @@
     background-color: green;
     color: #fff;
     border-radius: 0.5rem;
-}
-
-
-.input-block input {
-    width: 100%;
-    font-size: 1.6rem;
-    height: 4rem;
-    margin: 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #b0aec7;
-}
-
-.input-block + .input-block {
-    margin-top: 1rem
-}
-
-.input-block label {
-    font-size: 1.4rem;
-}
-
-@media(min-width: 700px){
-    .landing-content {
-        flex-direction: row-reverse;
-        justify-content: space-around;
-    }
 }

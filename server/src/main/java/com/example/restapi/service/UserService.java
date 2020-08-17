@@ -95,6 +95,11 @@ public class UserService implements UserDetailsService {
 		return userRepository.findAll();
 	}
 
+	public List<UserDAO> findByNameContaining(String name){
+		return userRepository.findByNameContainingIgnoreCase(name);
+	}
+
+
 	public Optional<UserDAO> findById(int id){
 		return userRepository.findById(id);
 	}
