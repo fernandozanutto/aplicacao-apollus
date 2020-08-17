@@ -51,11 +51,6 @@ public class AuthenticationController {
 	}
 
 
-	@GetMapping("/users")
-	public List<UserDAO> getUsers(){
-		return userDetailsService.findAll();
-	}
-
 	@GetMapping("/me")
 	public ResponseEntity<?> getMe(@RequestHeader("authorization") final String jwt){
 
@@ -100,91 +95,6 @@ public class AuthenticationController {
 
 
 		return null;
-	}
-
-	@GetMapping("/check-permission/{id}")
-	public ResponseEntity<?> getEditAcess(@PathVariable int id, @RequestHeader("authorization") final String jwt){
-
-		String username = null;
-		String jwtToken = null;
-
-		if (jwt != null && jwt.startsWith("Bearer ")) {
-			jwtToken = jwt.substring(7);
-			try {
-				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-				UserDAO myUser = userDetailsService.findUserByUsername(username);
-
-				UserDAO accessedUser = userDetailsService.findById(id).orElse(null);
-
-				if(accessedUser == null){
-					return new ResponseEntity<String>("Não autorizado", HttpStatus.FORBIDDEN);
-				}
-
-				if(myUser.getType() == 1 || accessedUser.getId() == myUser.getId() ){
-					return ResponseEntity.ok().body(true);
-				} else {
-					return new ResponseEntity<String>("Não autorizado", HttpStatus.FORBIDDEN);
-				}
-
-			} catch (IllegalArgumentException e) {
-				System.out.println("Unable to get JWT Token");
-			} catch (ExpiredJwtException e) {
-				System.out.println("JWT Token has expired");
-			}
-		}
-
-
-		return null;
-	}
-
-	@GetMapping("/users/{id}")
-	public ResponseEntity<?> findById(@PathVariable int id){
-		
-		UserDAO a = userDetailsService.findById(id).orElse(null);
-
-		if(a == null){
-			return ResponseEntity.notFound().build();
-		} else {
-			return ResponseEntity.ok().body(a);
-		}
-	}
-
-
-	@PutMapping(value = "users/{id}")
-	public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDAO user){
-
-		UserDAO record = userDetailsService.update(id, user);
-
-		if(record == null){
-			return ResponseEntity.notFound().build();
-		}
-
-		return ResponseEntity.ok().body(record);
-	}
-
-	@PostMapping(value = "users")
-	public ResponseEntity<?> createUser(@RequestBody UserDAO user){
-		UserDAO newUser = userDetailsService.create(user);
-
-		if(newUser.getId() != 0){
-			return ResponseEntity.ok().body(newUser.getId());
-		}
-
-		return ResponseEntity.badRequest().build();
-	}
-
-
-	@DeleteMapping(value = "users/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable int id) {
-		UserDAO user = userDetailsService.findById(id).orElse(null);
-
-		if(user == null){
-			return ResponseEntity.notFound().build();
-		} else {
-			userDetailsService.deleteById(id);
-
-			return ResponseEntity.ok().build();
-		}
 	}
 
 
