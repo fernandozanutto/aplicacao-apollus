@@ -56,7 +56,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(record.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
