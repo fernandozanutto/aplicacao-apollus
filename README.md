@@ -1,5 +1,12 @@
 Projeto feito com React (front-end) e Java Spring (back-end)
 
+## Requisitos
+[Java Development Kit](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
+
+[Maven](https://maven.apache.org/download.cgi)
+
+[Node](https://nodejs.org/en/)
+
 ## Executando o projeto
 Primeiramente, clone este repositório e entre na pasta.
 
