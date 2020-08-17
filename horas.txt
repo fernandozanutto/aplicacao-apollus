@@ -16,5 +16,6 @@
 190 min -> front end + back end praticamente pronto (ta tudo funcional, faltam os detalhes de interface etc)
 110 -> edição de usuário + criação de usuário pelo administrador
 80 min -> ajustes de layout
+30min -> quase esqueço da parte de buscar usuários xD
 
 total: ~20 horas
