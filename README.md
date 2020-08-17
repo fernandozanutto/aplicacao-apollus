@@ -1,26 +1,34 @@
 Projeto feito com React (front-end) e Java Spring (back-end)
 
 ## Executando o projeto
-Entre na pasta do projeto back-end e rode o script para rodar o projeto
+1º Clone este repositório
 
-cd server
+2º instale as dependências das pastas `client` e `server`, e execute as aplicações
 
-mvn spring-boot:run
+  Em um terminal rode:
+
+    `cd server`
+
+    `mvn spring-boot:run`
+
+  Em outro terminal rode:
+
+    `cd client`
+
+    `npm run install` ou `yarn install`
+
+    `npm run start` ou `yarn start`
+
+Ao rodar a aplicação React, já deve abrir uma página no navegador, caso não abra, acesse `http://localhost:3000`
 
 
+Ao rodar o servidor back-end foi criado um banco de dados já populado com alguns dados de exemplo, incluindo um usuário administrador.
 
-Entre na pasta do projeto front-end e rode o script para iniciar o projeto
+Usuário de administrador: `admin@admin.com`
 
-cd client
-yarn install
-### `yarn start`
+Senha de adminstrador: `admin`
 
+Usuário comum: `user@user.com`
 
-Ao rodar o servidor back-end foi criado um banco de dados já populado com alguns dados.
-
-Usuário de administrador: admin@admin.com
-Senha de adminstrador: admin
-
-Usuário comum: user@user.com
-Senha de usuário: 123
+Senha de usuário: `123`
 
