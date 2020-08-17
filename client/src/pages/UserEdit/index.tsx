@@ -43,7 +43,6 @@ const UserEdit: React.FC<Props> = (props) => {
             const loggedUser = await api.get('/me')
             
             if(loggedUser.data.id !== Number(id) && loggedUser.data.type !== 1){
-                console.log('nao tem autorização')
                 goBack();
             }
             else {
@@ -91,18 +90,23 @@ const UserEdit: React.FC<Props> = (props) => {
     
     async function saveUser(e: FormEvent){
         e.preventDefault()
+        try{
+            const token = await api.put('/users/' + id, {
+                username: email,
+                bio, status, address, phone, role, name, birth: fixDate(birth), password, type
+            })
+            
+            toast.success('Alterações salvas com sucesso', {position: toast.POSITION.TOP_CENTER})
 
-        const token = await api.put('/users/' + id, {
-            username: email,
-            bio, status, address, phone, role, name, birth: fixDate(birth), password, type
-        })
-        toast.success('Alterações salvas com sucesso', {position: toast.POSITION.TOP_CENTER})
-        if(isMe){
-            console.log(token)
-            login(token.data)
+            if(isMe){
+                login(token.data)
+            }
+        
+            push('/user/' + id)
+        } catch (err) {
+            toast.error('Email já cadastrado.', {position: toast.POSITION.TOP_CENTER})
         }
-    
-        push('/user/' + id)
+        
     }
 
     function deleteUser(e: FormEvent){

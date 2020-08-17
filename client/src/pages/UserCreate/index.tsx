@@ -55,7 +55,6 @@ const UserCreate = () => {
                 bio, status, address, phone, role, name, birth: fixDate(birth), password, type
             })
     
-            console.log(response)
             toast.success('Usuário criado com sucesso', {position: toast.POSITION.TOP_CENTER})
         
             push('/user/' + response.data)
