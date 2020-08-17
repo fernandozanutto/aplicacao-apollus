@@ -18,5 +18,6 @@
 80 min -> ajustes de layout
 30min -> quase esqueço da parte de buscar usuários xD
 40min -> deletar usuario + nao deslogar se altera o proprio email
+30min -> teste + correção de um bug onde não aceitava editar o usuário porque os usuários de exemplo não tinha senha cadastrada :)
 
-total: ~21 horas
+total: ~21,5 horas
